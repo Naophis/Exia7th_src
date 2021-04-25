@@ -1,6 +1,12 @@
 # This file was automatically generated for projects
 # without default 'CMakeLists.txt' file.
 
-FILE(GLOB_RECURSE app_sources ${CMAKE_SOURCE_DIR}/src/*.*)
+cmake_minimum_required(VERSION 3.1)
 
-idf_component_register(SRCS ${app_sources})
+set(COMPONENT_ADD_INCLUDEDIRS
+    "."
+)
+set(COMPONENT_SRCS 
+    "main.cpp"
+    )
+register_component()
