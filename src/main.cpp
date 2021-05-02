@@ -205,62 +205,63 @@ extern "C" void app_main()
     // init_spi(spi);
     // mpu9250_init(spi);
 
-    mcpwm_config_t pwm_config;
-    init_pwm(pwm_config);
+    // mcpwm_config_t pwm_config;
+    // init_pwm(pwm_config);
     // mcpwm_config_t pwm_config2;
     // init_pwm2(pwm_config2);
     // mcpwm_config_t pwm_config3;
     // init_pwm(pwm_config3);
 
-    esp_chip_info_t chip_info;
-    esp_chip_info(&chip_info);
-    adc1_config_channel_atten(ADC1_CHANNEL_0, ADC_ATTEN_0db);
-    adc1_config_channel_atten(ADC1_CHANNEL_1, ADC_ATTEN_0db);
-    adc1_config_channel_atten(ADC1_CHANNEL_2, ADC_ATTEN_0db);
-    adc1_config_channel_atten(ADC1_CHANNEL_3, ADC_ATTEN_0db);
-    adc1_config_channel_atten(ADC1_CHANNEL_6, ADC_ATTEN_0db);
-    adc2_config_channel_atten(ADC2_CHANNEL_0, ADC_ATTEN_0db);
+    // esp_chip_info_t chip_info;
+    // esp_chip_info(&chip_info);
+    // adc1_config_channel_atten(ADC1_CHANNEL_0, ADC_ATTEN_0db);
+    // adc1_config_channel_atten(ADC1_CHANNEL_1, ADC_ATTEN_0db);
+    // adc1_config_channel_atten(ADC1_CHANNEL_2, ADC_ATTEN_0db);
+    // adc1_config_channel_atten(ADC1_CHANNEL_3, ADC_ATTEN_0db);
+    // adc1_config_channel_atten(ADC1_CHANNEL_6, ADC_ATTEN_0db);
+    // adc2_config_channel_atten(ADC2_CHANNEL_0, ADC_ATTEN_0db);
     int cnt = 0;
-    int read_raw;
-    adc2_config_channel_atten(ADC2_CHANNEL_7, ADC_ATTEN_0db);
+    // int read_raw;
+    // adc2_config_channel_atten(ADC2_CHANNEL_7, ADC_ATTEN_0db);
     while (1)
     {
         cnt++;
         // int res = mpu9250_read1byte(spi, 117);
 
-        int read_raw0 = adc1_get_raw(ADC1_CHANNEL_0);
-        int read_raw1 = adc1_get_raw(ADC1_CHANNEL_1);
-        int read_raw2 = adc1_get_raw(ADC1_CHANNEL_2);
-        int read_raw3 = adc1_get_raw(ADC1_CHANNEL_3);
-        int read_raw5 = adc1_get_raw(ADC1_CHANNEL_3);
-        int read_raw4;
-        // adc2_get_raw(ADC2_CHANNEL_0, ADC_WIDTH_12Bit, &read_raw4);
+        // int read_raw0 = adc1_get_raw(ADC1_CHANNEL_0);
+        // int read_raw1 = adc1_get_raw(ADC1_CHANNEL_1);
+        // int read_raw2 = adc1_get_raw(ADC1_CHANNEL_2);
+        // int read_raw3 = adc1_get_raw(ADC1_CHANNEL_3);
+        // int read_raw5 = adc1_get_raw(ADC1_CHANNEL_3);
+        // int read_raw4;
+        // // adc2_get_raw(ADC2_CHANNEL_0, ADC_WIDTH_12Bit, &read_raw4);
 
-        esp_err_t r = adc2_get_raw(ADC2_CHANNEL_7, ADC_WIDTH_12Bit, &read_raw4);
-        if (r == ESP_OK)
-        {
-            printf("%d\n", read_raw4);
-        }
-        else if (r == ESP_ERR_TIMEOUT)
-        {
-            printf("ADC2 used by Wi-Fi.\n");
-        }
+        // esp_err_t r = adc2_get_raw(ADC2_CHANNEL_7, ADC_WIDTH_12Bit, &read_raw4);
+        // if (r == ESP_OK)
+        // {
+        //     printf("%d\n", read_raw4);
+        // }
+        // else if (r == ESP_ERR_TIMEOUT)
+        // {
+        //     printf("ADC2 used by Wi-Fi.\n");
+        // }
+        printf("hello world %d\n", cnt);
 
-        printf("hello world %d %d %d %d %d %d %d %d\n", cnt, read_raw0, read_raw1, read_raw2, read_raw3, read_raw4, read_raw5, r);
+        // printf("hello world %d %d %d %d %d %d %d %d\n", cnt, read_raw0, read_raw1, read_raw2, read_raw3, read_raw4, read_raw5, r);
 
-        pwm_config.cmpr_a = 25; // デューティサイクルの初期値（0%）
-        mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);
+        // pwm_config.cmpr_a = 25; // デューティサイクルの初期値（0%）
+        // mcpwm_init(MCPWM_UNIT_0, MCPWM_TIMER_0, &pwm_config);
         // pwm_config2.cmpr_a = 10; // デューティサイクルの初期値（0%）
         // mcpwm_init(MCPWM_UNIT_1, MCPWM_TIMER_1, &pwm_config2);
         // pwm_config.cmpr_a = 25; // デューティサイクルの初期値（0%）
         // mcpwm_init(MCPWM_UNIT_2, MCPWM_TIMER_0, &pwm_config3);
 
-        gpio_set_level((gpio_num_t)LED1, cnt & 0x01);
-        gpio_set_level((gpio_num_t)LED2, cnt & 0x01);
-        gpio_set_level((gpio_num_t)LED3, cnt & 0x01);
+        // gpio_set_level((gpio_num_t)LED1, cnt & 0x01);
+        // gpio_set_level((gpio_num_t)LED2, cnt & 0x01);
+        // gpio_set_level((gpio_num_t)LED3, cnt & 0x01);
 
-        gpio_set_level((gpio_num_t)R_IN1, 1);
-        gpio_set_level((gpio_num_t)R_IN2, 0);
+        // gpio_set_level((gpio_num_t)R_IN1, 1);
+        // gpio_set_level((gpio_num_t)R_IN2, 0);
 
         // gpio_set_level((gpio_num_t)21, 1);
         // gpio_set_level((gpio_num_t)23, 1);
